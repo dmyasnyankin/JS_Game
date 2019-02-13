@@ -195,8 +195,13 @@ class Brick {
 
                 if (this.brickGrid[arrayIndex]) {
 
-                    const img = document.getElementById("tilestyle");
-                    this.canvasContext.drawImage(img, 672, 240, 24, 24, (this.BRICK_W * eachCol), (this.BRICK_H * eachRow), 75, 17.5);
+                    var myImage = new Image();
+                    myImage.src = "./assets/redbrick.png";
+
+                    this.canvasContext.drawImage(myImage, (this.BRICK_W * eachCol), (this.BRICK_H * eachRow), 70, 20);
+
+                    // const img = document.getElementById("tilestyle");
+                    // this.canvasContext.drawImage(img, 672, 240, 24, 24, (this.BRICK_W * eachCol), (this.BRICK_H * eachRow), 75, 17.5);
 
                     // this.colorRect(this.BRICK_W * eachCol, this.BRICK_H * eachRow, this.BRICK_W - this.BRICK_GAP, this.BRICK_H - this.BRICK_GAP, "white");
 
