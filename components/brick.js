@@ -27,14 +27,14 @@ class Brick {
     drawBricks() {
 
         for (var eachRow = 0; eachRow < this.BRICK_ROWS; eachRow++) {
-            for (var eachCol = 0; eachCol < this.BRICK_COLS; eachCol++) {
+            for (var eachCol = 1; eachCol < this.BRICK_COLS; eachCol++) {
 
                 var arrayIndex = this.rowColToArrayIndex(eachCol, eachRow);
 
                 if (this.brickGrid[arrayIndex]) {
 
                     var myImage = new Image();
-                    myImage.src = "./assets/redbrick.png";
+                    myImage.src = "./assets/blackbrick.jpg";
 
                     this.canvasContext.drawImage(myImage, (this.BRICK_W * eachCol), (this.BRICK_H * eachRow), 70, 20);
 
