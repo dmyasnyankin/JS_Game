@@ -356,6 +356,9 @@ class Game {
             this.canvasContext.fillText("Click to Begin", 350, 500);
             return;
         }
+        this.canvasContext.fillStyle = "black";
+        this.canvasContext.fillText(`Lives: ${this.lives}`, this.canvas.width-100, 30);
+
 
 
         this.colorCircle(this.ball.ballX, this.ball.ballY, 10, "black");
