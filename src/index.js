@@ -12,5 +12,7 @@ window.onload = function () {
     const game = new Game(canvas, canvasContext);
     setInterval(game.updateAll, 1000 / framesPerSecond)
     canvas.addEventListener('mousemove', game.paddle.updateMousePos);
+    canvas.addEventListener('mousedown', game.handleMouseClick);
+
 }
 

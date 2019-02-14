@@ -4,7 +4,7 @@ import Brick from '../components/brick.js';
 
 class Game {
 
-    constructor(canvas, canvasContext){
+    constructor(canvas, canvasContext, lives = 3){
         this.lives = 3;
         this.canvas = canvas;
         this.canvasContext = canvasContext;
@@ -20,6 +20,18 @@ class Game {
         this.colorCircle = this.colorCircle.bind(this);
         this.colorRect = this.colorRect.bind(this);
         this.colorText = this.colorText.bind(this);
+
+        //new
+        this.handleMouseClick = this.handleMouseClick.bind(this);
+        this.startScreen = true;
+        this.lives = lives;
+    }
+
+    handleMouseClick() {
+        if(this.startScreen) {
+            this.lives = 3;
+            this.startScreen = false;
+        }
     }
 
     updateAll() {
@@ -43,12 +55,22 @@ class Game {
         this.canvasContext.drawImage(backgroundImg, 0, 0, this.canvas.width, this.canvas.height);
         // this.colorRect(0, 0, this.canvas.width, this.canvas.height, backgroundImg);
         //draw ball
+
+
+        if(this.startScreen){
+            this.canvasContext.fillStyle = "black";
+            this.canvasContext.fillText("Click to Begin", 350, 500);
+            return;
+        }
+
+
         this.colorCircle(this.ball.ballX, this.ball.ballY, 10, "black");
         //draw paddle
         // this.colorRect(this.paddle.paddleX, this.canvas.height - this.paddle.PADDLE_DIST_FROM_EDGE, this.paddle.PADDLE_WIDTH, this.paddle.PADDLE_THICKNESS, 'white');
         var myImage = new Image();
         myImage.src = "./assets/grasspaddle.jpg";
         this.canvasContext.drawImage(myImage, this.paddle.paddleX, this.canvas.height - this.paddle.PADDLE_DIST_FROM_EDGE, this.paddle.PADDLE_WIDTH, this.paddle.PADDLE_THICKNESS);
+
 
         this.brick.drawBricks();
 
@@ -60,7 +82,7 @@ class Game {
     }
 
     colorCircle(centerX, centerY, radius, fillColor) {
-        this.canvasContext.fillStyle = "white";
+        this.canvasContext.fillStyle = "rgba(24, 183, 24, 0.8)";
         this.canvasContext.beginPath();
         this.canvasContext.arc(this.ball.ballX, this.ball.ballY, 10, 0, Math.PI * 2, true);
         this.canvasContext.fill();

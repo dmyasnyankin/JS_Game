@@ -27,7 +27,7 @@ class Brick {
     drawBricks() {
 
         for (var eachRow = 0; eachRow < this.BRICK_ROWS; eachRow++) {
-            for (var eachCol = 1; eachCol < this.BRICK_COLS; eachCol++) {
+            for (var eachCol = 0; eachCol < this.BRICK_COLS; eachCol++) {
 
                 var arrayIndex = this.rowColToArrayIndex(eachCol, eachRow);
 
