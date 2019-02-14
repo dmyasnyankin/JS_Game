@@ -321,6 +321,7 @@ class Game {
         //new
         this.handleMouseClick = this.handleMouseClick.bind(this);
         this.startScreen = true;
+        this.endScreen = false;
         this.lives = lives;
     }
 
@@ -329,9 +330,17 @@ class Game {
             this.lives = 3;
             this.startScreen = false;
         }
+
+        if (this.endScreen){
+            this.lives = 3;
+            this.endScreen = false;
+        }
     }
 
     updateAll() {
+        if(this.lives === 0){
+            this.endScreen = true;
+        }
         this.moveAll();
         this.drawAll();
     }
@@ -365,6 +374,15 @@ class Game {
             return;
         }
         this.canvasContext.fillStyle = "black";
+
+        if(this.endScreen){
+            this.canvasContext.fillStyle = "black";
+            this.canvasContext.fillText("Click to Play Again", 350, 500);
+            return;
+        }
+        this.canvasContext.fillStyle = "black";
+
+
         
         // if(this.ball.ballReset){
         //     this.lives -= 1;
