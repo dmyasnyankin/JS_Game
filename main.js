@@ -95,7 +95,9 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/game.js */ "./components/game.js");
 
+ 
 class Ball {
 
     constructor(canvas, brickReset) {
@@ -132,6 +134,7 @@ class Ball {
             this.ballSpeedY *= -1;//top
         }
         if (this.ballY > this.canvas.height) {//bottom
+            // this.game.lives -= 1;
             this.ballReset();
             // this.brickReset();
             // ballSpeedY *= -1;
@@ -334,8 +337,13 @@ class Game {
     }
 
     moveAll() {
-        this.ball.ballMove();
-
+        if (this.ball.ballMove) {
+            if (this.ball.ballY > this.canvas.height - this.paddle.PADDLE_THICKNESS) {
+                this.lives -= 1;
+            }
+            this.ball.ballMove();
+        }
+        // this.ball.ballMove();
         this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY);
 
         this.paddle.ballPaddleHandling();
@@ -357,6 +365,10 @@ class Game {
             return;
         }
         this.canvasContext.fillStyle = "black";
+        
+        // if(this.ball.ballReset){
+        //     this.lives -= 1;
+        // }
         this.canvasContext.fillText(`Lives: ${this.lives}`, this.canvas.width-100, 30);
 
 

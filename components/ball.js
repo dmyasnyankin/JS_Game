@@ -1,4 +1,5 @@
-
+import Game from '../components/game.js';
+ 
 class Ball {
 
     constructor(canvas, brickReset) {
@@ -35,6 +36,7 @@ class Ball {
             this.ballSpeedY *= -1;//top
         }
         if (this.ballY > this.canvas.height) {//bottom
+            // this.game.lives -= 1;
             this.ballReset();
             // this.brickReset();
             // ballSpeedY *= -1;
