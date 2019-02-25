@@ -16,8 +16,8 @@ class Brick {
         this.drawBricks = this.drawBricks.bind(this);
         this.rowColToArrayIndex = this.rowColToArrayIndex.bind(this);
         this.brickReset = this.brickReset.bind(this);
-        this.isBrickAtColRow = this.isBrickAtColRow.bind(this);
         this.ballBrickHandling = this.ballBrickHandling.bind(this);
+        this.isBrickAtColRow = this.isBrickAtColRow.bind(this);
     }
 
     rowColToArrayIndex(col, row) {
@@ -71,6 +71,7 @@ class Brick {
     }
 
     ballBrickHandling() {
+        var collisionWithBrick = false;
         var ballBrickCol = Math.floor(this.ball.ballX / this.BRICK_W);
         var ballBrickRow = Math.floor(this.ball.ballY / this.BRICK_H);
         var brickIndexUnderBall = this.rowColToArrayIndex(ballBrickCol, ballBrickRow);
@@ -82,7 +83,9 @@ class Brick {
 
             if (this.isBrickAtColRow(ballBrickCol, ballBrickRow)) {
                 this.brickGrid[brickIndexUnderBall] = false;
+                collisionWithBrick = true;
                 this.bricksLeft--;
+                this.score += 1;
 
                 var prevBallX = this.ball.ballX - this.ball.ballSpeedX;
                 var prevBallY = this.ball.ballY - this.ball.ballSpeedY;
@@ -109,8 +112,10 @@ class Brick {
                     this.ball.ballSpeedX *= -1;
                     this.ball.ballSpeedY *= -1;
                 }
+    
             } //end of brick found
         } // end of valid col and row
+        return collisionWithBrick;
     } //end of ballBrickHandling func
 }
 

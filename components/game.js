@@ -9,7 +9,7 @@ class Game {
         this.canvas = canvas;
         this.canvasContext = canvasContext;
         this.ball = new Ball(canvas);
-        this.brick = new Brick(this.colorRect, this.canvasContext, this.ball);
+        this.brick = new Brick(this.colorRect, this.canvasContext, this.ball, this.score);
         this.paddle = new Paddle(this.ball, this.brick, canvas);
         this.ball.ballReset();
         this.brick.brickReset();
@@ -21,11 +21,15 @@ class Game {
         this.colorRect = this.colorRect.bind(this);
         this.colorText = this.colorText.bind(this);
 
-        //new
         this.handleMouseClick = this.handleMouseClick.bind(this);
         this.startScreen = true;
         this.endScreen = false;
-        this.lives = lives;
+        //new
+        this.score = 0;
+        // this.dirChange = true;
+        // this.distStart;
+        // this.distEnd;
+        // this.brick.isBrickAtColRow = this.brick.isBrickAtColRow.bind(this);
     }
 
     handleMouseClick() {
@@ -55,8 +59,11 @@ class Game {
             }
             this.ball.ballMove();
         }
-        // this.ball.ballMove();
-        this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY);
+
+        if (this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY)){
+            this.score += 1;
+        };
+        // this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY);
 
         this.paddle.ballPaddleHandling();
     }
@@ -91,8 +98,8 @@ class Game {
         //     this.lives -= 1;
         // }
         this.canvasContext.fillText(`Lives: ${this.lives}`, this.canvas.width-120, 40);
-
-
+        
+        this.canvasContext.fillText(`Score: ${this.score}`, this.canvas.width-780, 40);
 
         this.colorCircle(this.ball.ballX, this.ball.ballY, 10, "black");
         //draw paddle

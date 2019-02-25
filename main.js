@@ -181,8 +181,8 @@ class Brick {
         this.drawBricks = this.drawBricks.bind(this);
         this.rowColToArrayIndex = this.rowColToArrayIndex.bind(this);
         this.brickReset = this.brickReset.bind(this);
-        this.isBrickAtColRow = this.isBrickAtColRow.bind(this);
         this.ballBrickHandling = this.ballBrickHandling.bind(this);
+        this.isBrickAtColRow = this.isBrickAtColRow.bind(this);
     }
 
     rowColToArrayIndex(col, row) {
@@ -236,6 +236,7 @@ class Brick {
     }
 
     ballBrickHandling() {
+        var collisionWithBrick = false;
         var ballBrickCol = Math.floor(this.ball.ballX / this.BRICK_W);
         var ballBrickRow = Math.floor(this.ball.ballY / this.BRICK_H);
         var brickIndexUnderBall = this.rowColToArrayIndex(ballBrickCol, ballBrickRow);
@@ -247,7 +248,9 @@ class Brick {
 
             if (this.isBrickAtColRow(ballBrickCol, ballBrickRow)) {
                 this.brickGrid[brickIndexUnderBall] = false;
+                collisionWithBrick = true;
                 this.bricksLeft--;
+                this.score += 1;
 
                 var prevBallX = this.ball.ballX - this.ball.ballSpeedX;
                 var prevBallY = this.ball.ballY - this.ball.ballSpeedY;
@@ -274,8 +277,10 @@ class Brick {
                     this.ball.ballSpeedX *= -1;
                     this.ball.ballSpeedY *= -1;
                 }
+    
             } //end of brick found
         } // end of valid col and row
+        return collisionWithBrick;
     } //end of ballBrickHandling func
 }
 
@@ -306,7 +311,7 @@ class Game {
         this.canvas = canvas;
         this.canvasContext = canvasContext;
         this.ball = new _components_ball_js__WEBPACK_IMPORTED_MODULE_0__["default"](canvas);
-        this.brick = new _components_brick_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.colorRect, this.canvasContext, this.ball);
+        this.brick = new _components_brick_js__WEBPACK_IMPORTED_MODULE_2__["default"](this.colorRect, this.canvasContext, this.ball, this.score);
         this.paddle = new _components_paddle_js__WEBPACK_IMPORTED_MODULE_1__["default"](this.ball, this.brick, canvas);
         this.ball.ballReset();
         this.brick.brickReset();
@@ -318,11 +323,15 @@ class Game {
         this.colorRect = this.colorRect.bind(this);
         this.colorText = this.colorText.bind(this);
 
-        //new
         this.handleMouseClick = this.handleMouseClick.bind(this);
         this.startScreen = true;
         this.endScreen = false;
-        this.lives = lives;
+        //new
+        this.score = 0;
+        // this.dirChange = true;
+        // this.distStart;
+        // this.distEnd;
+        // this.brick.isBrickAtColRow = this.brick.isBrickAtColRow.bind(this);
     }
 
     handleMouseClick() {
@@ -352,8 +361,11 @@ class Game {
             }
             this.ball.ballMove();
         }
-        // this.ball.ballMove();
-        this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY);
+
+        if (this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY)){
+            this.score += 1;
+        };
+        // this.brick.ballBrickHandling(this.ball.ballX, this.ball.ballY, this.ball.ballSpeedX, this.ball.ballSpeedY);
 
         this.paddle.ballPaddleHandling();
     }
@@ -388,8 +400,8 @@ class Game {
         //     this.lives -= 1;
         // }
         this.canvasContext.fillText(`Lives: ${this.lives}`, this.canvas.width-120, 40);
-
-
+        
+        this.canvasContext.fillText(`Score: ${this.score}`, this.canvas.width-780, 40);
 
         this.colorCircle(this.ball.ballX, this.ball.ballY, 10, "black");
         //draw paddle
