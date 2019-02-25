@@ -369,18 +369,18 @@ class Game {
 
 
         if(this.startScreen){
-            this.canvasContext.fillStyle = "black";
+            this.canvasContext.fillStyle = "white";
             this.canvasContext.fillText("Click to Begin", 350, 500);
             return;
         }
-        this.canvasContext.fillStyle = "black";
+        this.canvasContext.fillStyle = "white";
 
         if(this.endScreen){
-            this.canvasContext.fillStyle = "black";
+            this.canvasContext.fillStyle = "white";
             this.canvasContext.fillText("Click to Play Again", 350, 500);
             return;
         }
-        this.canvasContext.fillStyle = "black";
+        this.canvasContext.fillStyle = "white";
 
 
         
