@@ -69,18 +69,18 @@ class Game {
         this.canvasContext.drawImage(backgroundImg, 0, 0, this.canvas.width, this.canvas.height);
         // this.colorRect(0, 0, this.canvas.width, this.canvas.height, backgroundImg);
         //draw ball
-
+        this.canvasContext.font = '30px sans-serif';
 
         if(this.startScreen){
             this.canvasContext.fillStyle = "white";
-            this.canvasContext.fillText("Click to Begin", 350, 500);
+            this.canvasContext.fillText("Click to Begin", 310, 300);
             return;
         }
         this.canvasContext.fillStyle = "white";
 
         if(this.endScreen){
             this.canvasContext.fillStyle = "white";
-            this.canvasContext.fillText("Click to Play Again", 350, 500);
+            this.canvasContext.fillText("Click to Play Again", 275, 300);
             return;
         }
         this.canvasContext.fillStyle = "white";
@@ -90,7 +90,7 @@ class Game {
         // if(this.ball.ballReset){
         //     this.lives -= 1;
         // }
-        this.canvasContext.fillText(`Lives: ${this.lives}`, this.canvas.width-100, 30);
+        this.canvasContext.fillText(`Lives: ${this.lives}`, this.canvas.width-120, 40);
 
 
 
