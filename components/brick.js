@@ -34,7 +34,7 @@ class Brick {
                 if (this.brickGrid[arrayIndex]) {
 
                     var myImage = new Image();
-                    myImage.src = "./assets/blackbrick.jpg";
+                    myImage.src = "./assets/white-brick-background.jpg";
 
                     this.canvasContext.drawImage(myImage, (this.BRICK_W * eachCol), (this.BRICK_H * eachRow), 70, 20);
 

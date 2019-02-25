@@ -65,7 +65,7 @@ class Game {
         //clear screen
         var backgroundImg = new Image();
         // backgroundImg.src = "./assets/wormhole.jpg";
-        backgroundImg.src = "./assets/white-brick-background.jpg";
+        backgroundImg.src = "./assets/dark-stars.jpg";
         this.canvasContext.drawImage(backgroundImg, 0, 0, this.canvas.width, this.canvas.height);
         // this.colorRect(0, 0, this.canvas.width, this.canvas.height, backgroundImg);
         //draw ball
