@@ -218,10 +218,19 @@ class Brick {
         for (var i = 0; i < 3 * this.BRICK_COLS; i++) {
             this.brickGrid[i] = false;
         }
-        for (var i = 3 * this.BRICK_COLS; i < this.BRICK_COLS * this.BRICK_ROWS; i++) {
-            this.brickGrid[i] = true;
-            this.bricksLeft++;
-        } // end of for each brick
+        // for (var i = 3 * this.BRICK_COLS; i < this.BRICK_COLS * this.BRICK_ROWS; i++) {
+        //     this.brickGrid[i] = true;
+        //     this.bricksLeft++;
+        // } // end of for each brick
+
+        for (var i = 3 * this.BRICK_COLS; i < this.BRICK_COLS * this.BRICK_ROWS; i ++) {
+            if (Math.random() < 0.5) {
+                this.brickGrid[i] = true;
+                this.bricksLeft++;
+            } else {
+                this.brickGrid[i] = false;
+            }
+        }
     } // end of brickReset func
 
     isBrickAtColRow(col, row) {
