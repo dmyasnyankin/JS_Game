@@ -40,6 +40,7 @@ class Game {
 
         if (this.endScreen){
             this.lives = 3;
+            this.score = 0;
             this.endScreen = false;
         }
     }
@@ -87,7 +88,8 @@ class Game {
 
         if(this.endScreen){
             this.canvasContext.fillStyle = "white";
-            this.canvasContext.fillText("Click to Play Again", 275, 300);
+            this.canvasContext.fillText(`Your Score: ${this.score}`, 300, 200);
+            this.canvasContext.fillText("Click to Play Again", 275, 400);
             return;
         }
         this.canvasContext.fillStyle = "white";
