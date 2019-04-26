@@ -71,13 +71,47 @@ body {
     display: flex;
     justify-content: center;
 }
-#play{
-    font-size: 10px;
+
+.music{
+    background-color: rgba(173, 255, 47, 0.788);
+    height: 150px;
+    width: 800px;
+    margin: auto;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 50px;
+    margin-bottom: 5%;
+
 }
 
-#mute{
-    font-size: 10px;
+.sound-title{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: rgba(250, 252, 250, 0.788);
+    text-shadow: 3px 3px 3px black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+.button-layout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+}
+
+.music-buttons{
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    font-size: 30px;
+    margin-bottom: 5%;
+}
+
+
+
 </style>
 
 <body class="background">
@@ -89,9 +123,11 @@ body {
         </div>
         <br>
         <div class="music">
-            <p>Sound Options</p>
-                <button id="play"><i class="fas fa-play-circle"></i></button>
-                <button id="mute"><i class="fas fa-volume-mute"></i></button>
+            <p class="sound-title">Sound Options</p>
+                <div class="button-layout">
+                    <button id="play" class="music-buttons"><i class="fas fa-play-circle"></i></button>
+                    <button id="mute" class="music-buttons"><i class="fas fa-volume-mute"></i></button>
+                </div>
         </div>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
         </div>
