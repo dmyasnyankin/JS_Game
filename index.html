@@ -8,6 +8,7 @@
     <title>Tile Smasher</title>
     <script src="./main.js"></script>
     <link rel="shortcut icon" href="./assets/green20brick.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <style>
@@ -70,6 +71,13 @@ body {
     display: flex;
     justify-content: center;
 }
+#play{
+    font-size: 10px;
+}
+
+#mute{
+    font-size: 10px;
+}
 </style>
 
 <body class="background">
@@ -80,6 +88,11 @@ body {
             <h1 class="title">Tile Smasher</h1>
         </div>
         <br>
+        <div class="music">
+            <p>Sound Options</p>
+                <button id="play"><i class="fas fa-play-circle"></i></button>
+                <button id="mute"><i class="fas fa-volume-mute"></i></button>
+        </div>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
         </div>
         <br>
@@ -89,6 +102,10 @@ body {
             <p class="directions">The further on the edge of the paddle you hit the faster the ball goes</p>
         </div>
     </div>
+
+    <script>
+        const bgmusik = new Audio("./assets/matrix-theme-song.mp3");
+    </script>
 </body>
 
 </html>
