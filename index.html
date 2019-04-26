@@ -23,14 +23,23 @@ body {
 }
 
 .title-holder {
-    background-color: rgba(173, 255, 47, 0.788);
+    background-color: rgba(174, 175, 172, 0.85);
     height: 70px;
     width: 800px;
     margin: auto;
     display: flex; 
     flex-direction: column;
     justify-content: center;
-    border-radius: 50px;
+    /* border-radius: 5px; */
+    box-shadow: 1px 1px 10px 10px black;
+}
+
+.content-org{
+    background-color: rgba(174, 175, 172, 0.85);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    box-shadow: 0px 0px 10px 10px black;
 }
 
 .title{
@@ -38,9 +47,11 @@ body {
     justify-content: center;
     font-size: 30px;
     color: rgba(250, 252, 250, 0.788);
-    text-shadow: 3px 3px 3px black;
+    text-shadow: 2px 2px 2px black;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 15px;
 }
+
 .outer-wrapper{
     min-width: 800px;
 }
@@ -50,67 +61,101 @@ body {
     margin: 0 auto;
 }
 
-.directions-holder{
+.dm-holder{
 
-    background-color: rgba(173, 255, 47, 0.788);
-    height: 200px;
+    /* background-color: rgba(174, 175, 172, 0.85); */
+    height: 100px;
     width: 800px;
     margin: auto;
     display: flex; 
     flex-direction: column;
     justify-content: center;
+    align-content: space-between;
     border-radius: 50px;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 5px;
 }
+
+    .music-holder{
+        width: 30%;
+    }
+    .directions-holder{
+        width: 70%;
+    }
 
 .directions{
     color: rgba(250, 252, 250, 0.788);
-    text-shadow: 2px 2px 2px black;
+    text-shadow: 1px 1px 1px black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 10px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: flex;
-    justify-content: center;
-}
-
-.music{
-    background-color: rgba(173, 255, 47, 0.788);
-    height: 150px;
-    width: 800px;
-    margin: auto;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 50px;
-    margin-bottom: 5%;
-
+    justify-content: flex-start;
+    width: 70%;
+    padding-left: 7%;
+    padding-bottom: 10px; 
 }
 
 .sound-title{
     display: flex;
     justify-content: center;
-    font-size: 30px;
+    width: 30%;
+    font-size: 25px;
     color: rgba(250, 252, 250, 0.788);
-    text-shadow: 3px 3px 3px black;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-right: 10%;
+}
+
+.directions-title{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    font-size: 25px;
+    color: rgba(250, 252, 250, 0.788);
+    margin-right: 15%;
 }
 
 .button-layout{
+    margin-top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: space-between;
+    margin-right: 40%;
 }
 
 .music-buttons{
     margin: auto;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 5px;
-    font-size: 30px;
-    margin-bottom: 5%;
+    font-size: 20px;
+    margin-bottom: 30%;
 }
 
+.words{
+    width: 800px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: space-between;
+}
 
+.dm-titles{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+    height: 45px;
+    background-color: rgba(174, 175, 172, 0.85);
+    text-shadow: 1.5px 1.5px 1.5px black;
+    box-shadow: 0px 0px 10px 10px black;
+}
+
+#gameCanvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 </style>
 
@@ -118,29 +163,57 @@ body {
     <!-- <img id="tilestyle" src="../assets/PSTiles.png" alt=""> -->
     <div class="outer-wrapper">
         <div class="inner-wrapper">
-        <div class="title-holder">
-            <h1 class="title">Tile Smasher</h1>
+
+            <div class="title-holder">
+                <h1 class="title">Tile Smasher</h1>
+            </div>
+
+            <br>
+
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+            <br>
+
+            <div class="dm-titles">
+                <div class="sound-title">Sound Options</div>
+                <div class="directions-title">Directions</div>
+            </div>
+            <div class="content-org">
+                <div class="words">
+                    <div class="dm-holder music-holder">
+                        <div class="button-layout">
+                            <button id="play" class="music-buttons"><i class="fas fa-play-circle"></i></button>
+                            <button id="mute" class="music-buttons"><i class="fas fa-volume-mute"></i></button>
+                        </div>
+                    </div>
+                    <div class="dm-holder directions-holder">
+                            <p class="directions">Move mouse to control the paddle movement</p>
+                            <p class="directions">Try to SMASH as many bricks as possible</p>
+                            <p class="directions">The further on the edge of the paddle you hit the faster the ball goes</p>
+                    </div>
+                </div> 
+            </div>       
+
         </div>
+
         <br>
-        <div class="music">
-            <p class="sound-title">Sound Options</p>
-                <div class="button-layout">
-                    <button id="play" class="music-buttons"><i class="fas fa-play-circle"></i></button>
-                    <button id="mute" class="music-buttons"><i class="fas fa-volume-mute"></i></button>
-                </div>
-        </div>
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
-        </div>
-        <br>
-        <div class="directions-holder">
-            <p class="directions">Move mouse to control ball</p>
-            <p class="directions">Try to DESTROY as many bricks as possible</p>
-            <p class="directions">The further on the edge of the paddle you hit the faster the ball goes</p>
-        </div>
+
+
     </div>
 
     <script>
         const bgmusik = new Audio("./assets/matrix-theme-song.mp3");
+        const playButton = document.getElementById("play");
+        const muteButton = document.getElementById("mute");
+
+        playButton.addEventListener("click", function () {
+            bgmusik.play();
+        });
+
+        muteButton.addEventListener("click", function () {
+            bgmusik.pause();
+        });
+
     </script>
 </body>
 
